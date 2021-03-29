@@ -1,43 +1,41 @@
-#Air2Air MAIN 
-
+#Air2Air Audio Main
+#updated on 28MAR21
 #This will serve as main file to call other functions from.
 
 #import big stuff
-import os
-import shutil   
 
-#import other scripts
-import audioprocess
-import micpytest
-import wavtoarray
 
-#audio section
+def runaudio():
+    import os
+    import shutil
 
-#While Loop start
-i = 1
-while i < 2:
-    
+    #import other scripts
+    import audioprocess
+    import micpytest
+    import wavtoarray
+
+    #audio section
     #Use USB mic to create and record audio file .mp3
     micpytest.createwav()
-    print("Check1")
-    
+
     #Convert data from .mp3 to .wav then return numpy array
     data = wavtoarray.convertfunc()
-    print("Check2")
-    print(data)
-    
+
     #input microphone data to audioprocessing function
-    detectresult = audioprocess.audiofunc(data)  
-    print("Check3")
-    
+    detectresult = audioprocess.audiofunc(data)
+
     #understand return and do or don't take action
     print (detectresult)
-    i += 1
-    
-    
 
-    #delete.wav file for space.
-#End of loop
+    return detectresult
+
+    # delete.wav file for space.
+    os.remove("test1.mp3")
+    os.remove("convert1.wav")
+
+
+        #delete.wav file for space.
+    #End of loop
 
 
 
