@@ -83,6 +83,8 @@ def audiofunc(inputdata):
     
     #print((detection_vectHz))
     #print((detection_vectMag))
+    #print("Classification data")
+    #print(classdata)
     print("peak count")
     print(peakcount)  
     

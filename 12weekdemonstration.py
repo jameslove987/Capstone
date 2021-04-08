@@ -14,13 +14,14 @@ import wavtoarray
 anafi = Anafi(drone_type="Anafi", ip_address="192.168.42.1")
 anafi.set_indoor(0)
 print("connecting")
+#7C45ASBXW8BL
 success = anafi.connect(10) #Continously attempts to connect to the drone 10 times until the drone is connected
 print(success)
 
 
 #user=input("Give a command: ") #main while loop
 a = 1
-while a < 5:
+while a < 3:
 
 
     spin = audiomain.runaudio(); #input the audio output from Harrisons sybsytem
@@ -39,8 +40,8 @@ while a < 5:
 
        #spin code the loop runtime and radians are configureable to adjust spin speed.
         i = 1
-        while i < 21:
-            anafi.move_relative(dx=0,dy=0,dz=0,dradians=.3) #clockwise
+        while i < 9:
+            anafi.move_relative(dx=0,dy=0,dz=0,dradians=.7) #clockwise
 
             #Video Detection Condition
             cv = 0 # video.videofunc()
