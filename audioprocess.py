@@ -67,14 +67,26 @@ def audiofunc(inputdata):
     plt.ylim([0, 1000])
 
 
-    #Detection Algorithm
-    detection_vect = magX_k[200:500]
+    #Detection Algorithm configured for plane
+    #detection_vectHz = f_vect[150:250]
+    #detection_vectMag = magX_k[150:250]
+    
     peakcount = 0
-    avg = np.mean(magX_k[150:1000])
-    for i in range(0, len(detection_vect)):
-        if detection_vect[i] > avg:
+    
+    #print(np.mean(magX_k[150:1000]))
+    
+    classdata = magX_k[1:1000]
+    
+    for i in range(0, len(classdata)):
+        if classdata[i] > 200:
             peakcount = peakcount+1
-    if peakcount > 3:
+    
+    #print((detection_vectHz))
+    #print((detection_vectMag))
+    print("peak count")
+    print(peakcount)  
+    
+    if peakcount >= 5:
         detect = 1
     else:
         detect = 0

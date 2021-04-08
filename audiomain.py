@@ -27,12 +27,13 @@ def runaudio():
     #understand return and do or don't take action
     print (detectresult)
 
-    return detectresult
+   
 
     # delete.wav file for space.
     os.remove("test1.mp3")
     os.remove("convert1.wav")
-
+    
+    return detectresult
 
         #delete.wav file for space.
     #End of loop

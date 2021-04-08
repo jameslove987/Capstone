@@ -1,5 +1,6 @@
 #Air2AIr
-#Love, Boldt
+#Love, Boldt 
+#updated 7apr21
 
 #Import pyparrot
 from pyparrot.Anafi import Anafi
@@ -17,12 +18,13 @@ success = anafi.connect(10) #Continously attempts to connect to the drone 10 tim
 print(success)
 
 
-user=input("Give a command: ") #main while loop
-while user != "end":
+#user=input("Give a command: ") #main while loop
+a = 1
+while a < 5:
 
 
-    spin = audiomain.amfunc(); #input the audio output from Harrisons sybsytem
-
+    spin = audiomain.runaudio(); #input the audio output from Harrisons sybsytem
+    print(spin)    
 
     #audio response protocol
     if spin == 1:
@@ -35,13 +37,13 @@ while user != "end":
         anafi.smart_sleep(1) #delays before movement
         print("moving")
 
-       #spin code
+       #spin code the loop runtime and radians are configureable to adjust spin speed.
         i = 1
-        while i < 63
-            anafi.move_relative(dx=0,dy=0,dz=0,dradians=.1) #clockwise
+        while i < 21:
+            anafi.move_relative(dx=0,dy=0,dz=0,dradians=.3) #clockwise
 
             #Video Detection Condition
-            #cv= video.videofunc()
+            cv = 0 # video.videofunc()
 
 
             if cv == "forward":
@@ -52,11 +54,11 @@ while user != "end":
                 anafi.fly_direct(0,-40,0,0,2) #fly_direct(roll, pitch, yaw, vertical_movement, duration)
                 anafi.fly_direct(0,40,0,0,1) #fly_direct(roll, pitch, yaw, vertical_movement, duration)   
                 print("Strafing backward")
-             elif cv == "sleft":
+            elif cv == "sleft":
                  anafi.fly_direct(-40,0,0,0,2) #fly_direct(roll, pitch, yaw, vertical_movement, duration)
                  anafi.fly_direct(40,0,0,0,1) #fly_direct(roll, pitch, yaw, vertical_movement, duration)
                  print("Strafing right")
-             elif cv == "sright":
+            elif cv == "sright":
                  anafi.fly_direct(40,0,0,0,2) #fly_direct(roll, pitch, yaw, vertical_movement, duration)
                  anafi.fly_direct(-40,0,0,0,1) #fly_direct(roll, pitch, yaw, vertical_movement, duration)
                  print("Strafing left")
@@ -83,8 +85,9 @@ while user != "end":
 
         print("landing")
         anafi.safe_land(5) #Ensure the mambo lands by sending the command until it shows landed on sensors
+    a += 1
          
    
 print("DONE - disconnecting")
-        anafi.disconnect()  #disconnects the drone from the computer
+anafi.disconnect()  #disconnects the drone from the computer
 
