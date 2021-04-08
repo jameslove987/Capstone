@@ -17,11 +17,9 @@ def rescale(frame, percent=60):
 filename = 'CapCal3.mp4'
 # load input image and convert to grayscale
 print("Loading image...")
-<<<<<<< Updated upstream
-cam = cv2.VideoCapture(filename)
-=======
+
 cam = cv2.VideoCapture(0)
->>>>>>> Stashed changes
+
 
 
 #set camera resolution
@@ -36,18 +34,14 @@ detector = pupil_apriltags.Detector(families="tag36h11")
 frame_number=0
 # keep looping
 while True:
-<<<<<<< Updated upstream
-        (grabbed, frame) = cam.read()
-        image = rescale(frame, percent=50)
 
-=======
         if not cam.isOpened():
                 cam.open(0)
                 print('initializing...')
         (grabbed, frame) = cam.read()
         image = rescale(frame, percent=50)
                 
->>>>>>> Stashed changes
+
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
         # execute the detector to find the tags (more options exist)
