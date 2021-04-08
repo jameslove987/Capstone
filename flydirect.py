@@ -11,7 +11,7 @@ anafi.safe_takeoff(5) #Sends commands to takeoff until the mambo reports it is t
 anafi.smart_sleep(1) #delays before movement
 print("moving")
 
-anafi.fly_direct(0,0,.5,0,2) #fly_direct(roll, pitch, yaw, vertical_movement, duration)
+anafi.fly_direct(0,0,90,0,2) #fly_direct(roll, pitch, yaw, vertical_movement, duration)
 #anafi.fly_direct(0,0,0,0,1) #fly_direct(roll, pitch, yaw, vertical_movement, duration)
 print("Decending")
 
