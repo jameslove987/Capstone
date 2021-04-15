@@ -1,6 +1,8 @@
 #Air2AIr
 #Love, Boldt 
 #updated 14apr21
+#Hopper 38 at 1125
+#Dawkins is in charge of room Record by Monday
 
 #Import pyparrot
 from pyparrot.Anafi import Anafi
@@ -48,7 +50,7 @@ while a < 3:
             count = 0 
             #JAY/JERRA camera input into script 
             
-            #JAY/JERRA ATD = April Tag detected? function
+            #JAY/JERRA ATD = April Tag detected? function may need multiple of these for redundancies 
             if ATD == 1:
             
                 #x_vector = 50 #initialize x vector
@@ -151,4 +153,7 @@ while a < 3:
    
 print("DONE - disconnecting")
 anafi.disconnect()  #disconnects the drone from the computer
+
+#everything is prerecorded.
+
 
