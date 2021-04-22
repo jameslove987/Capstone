@@ -1,8 +1,12 @@
 #Air2AIr
 #Love, Boldt 
+<<<<<<< HEAD
+#updated 20apr21
+=======
 #updated 14apr21
 #Hopper 38 at 1125
 #Dawkins is in charge of room Record by Monday
+>>>>>>> origin
 
 #Import pyparrot
 from pyparrot.Anafi import Anafi
@@ -13,12 +17,26 @@ import audioprocess
 import micpytest
 import wavtoarray
 
+#import cv
+import pupil_apriltags
+import cv2
+import time
+import Vision
+
+
 anafi = Anafi(drone_type="Anafi", ip_address="192.168.42.1")
 anafi.set_indoor(0)
 print("connecting")
 #7C45ASBXW8BL
 success = anafi.connect(10) #Continously attempts to connect to the drone 10 times until the drone is connected
 print(success)
+
+#turn camera on
+rtsp_url = "rtsp://192.168.42.1/live"
+cam = cv2.VideoCapture(rtsp_url)
+if not cam.isOpened():
+    cam.open(rtsp_url)
+    print('initializing camera...')
 
 
 #user=input("Give a command: ") #main while loop
@@ -48,6 +66,38 @@ while a < 3:
             #initializations 
             #count for later
             count = 0 
+<<<<<<< HEAD
+            #JAY/JERRA camera input into script
+            gray, image = Vision.getnewframe(cam)
+            
+            #JAY/JERRA ATD = April Tag detected? function
+            ATD = Vision.is_april(gray)
+            
+            if ATD == 1:
+                print("found APRIL TAG******")
+                coord = Vision.get_xy(gray, image)
+                x_vector = int(coord.get('x',0))
+                y_vector = int(coord.get('y',0))
+                print(x_vector)
+                print(y_vector)
+                
+                #x_vector = 50 #initialize x vector
+                while (x_vector > 10) or (x_vector < -10): 
+                    #JAY/JERRA x_vector = apriltag x vector function
+                    (x_vector, y_vector) = Vision.get_xy(gray, image)
+                    
+                    #move anafi left or right depending on x
+                    #move right
+                    if x_vector > 10:
+                        #clockwise
+                        anafi.move_relative(dx=0,dy=0,dz=0,dradians=.1) 
+                            
+                            
+                    #move left
+                    if x_vector < -10:
+                        #COUNTER clockwise
+                        anafi.move_relative(dx=0,dy=0,dz=0,dradians=-.1) 
+=======
             #JAY/JERRA camera input into script 
             
             #JAY/JERRA ATD = April Tag detected? function may need multiple of these for redundancies 
@@ -68,12 +118,33 @@ while a < 3:
                         if x_vector < -10:
                            #COUNTER clockwise
                            anafi.move_relative(dx=0,dy=0,dz=0,dradians=-.1) 
+>>>>>>> origin
                           
                     
                     
                 #y_vector = 50 #initialize y vector
                 while (y_vector > 10) or (y_vector < -10): 
                     #JAY/JERRA y_vector = apriltag y vector function
+<<<<<<< HEAD
+                    (x_vector, y_vector) = Vision.get_xy(gray, image)
+                    
+                    #move anafi up or down depending on y
+                    #move up
+                    if y_vector > 10:
+                        anafi.fly_direct(0,0,0,5,1) #fly_direct(roll, pitch, yaw, vertical_movement, duration)
+                            
+                    #move down
+                    if y_vector < -10:
+                        anafi.fly_direct(0,0,0,-5,1) #fly_direct(roll, pitch, yaw, vertical_movement, duration)
+                
+                #moving to target                        
+                while (ATD != 0) :
+                    #move forward function
+                    anafi.fly_direct(0,40,0,0,.5) #fly_direct(roll, pitch, yaw, vertical_movement, duration)
+                    #april tag detection function
+                    (gray, image) = Vision.getnewframe(cam)
+                    ATD = Vision.is_april(gray)
+=======
                     #move anafi up or down depending on y
                     #move up
                         if y_vector > 10:
@@ -87,6 +158,7 @@ while a < 3:
                     #JAMES move forward function
                     anafi.fly_direct(0,40,0,0,.5) #fly_direct(roll, pitch, yaw, vertical_movement, duration)
                     #JERRA / JAY april tag detection function
+>>>>>>> origin
                     
                     #count loop number for return
                     count += 1
@@ -94,7 +166,11 @@ while a < 3:
             #Drone moves back number of interations of count
             count2 = 0 
             while (count2 != count):
+<<<<<<< HEAD
+                #move drone backward
+=======
                 #JAMES move drone backward
+>>>>>>> origin
                 anafi.fly_direct(0,-40,0,0,.5) #fly_direct(roll, pitch, yaw, vertical_movement, duration)
                 count2 += 1
             
@@ -109,7 +185,11 @@ while a < 3:
             #cv = 0 # video.videofunc()
 
 
+<<<<<<< HEAD
+            #if import pupil_apriltags cv == "forward":
+=======
             #if cv == "forward":
+>>>>>>> origin
             #    anafi.fly_direct(0,40,0,0,2) #fly_direct(roll, pitch, yaw, vertical_movement, duration)
             #    anafi.fly_direct(0,-40,0,0,1.9) #fly_direct(roll, pitch, yaw, vertical_movement, duration)
             #    print("Strafing forward")
